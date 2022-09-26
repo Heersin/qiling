@@ -20,7 +20,15 @@ from ..const import color
 
 """
 
-COLORS = (color.DARKCYAN, color.BLUE, color.RED, color.YELLOW, color.GREEN, color.PURPLE, color.CYAN, color.WHITE)
+COLORS = (
+    color.DARKCYAN,
+    color.BLUE,
+    color.RED,
+    color.YELLOW,
+    color.GREEN,
+    color.PURPLE,
+    color.CYAN,
+    color.WHITE)
 
 class Render:
     """
@@ -72,7 +80,7 @@ class Render:
 
         lines = ""
         for idx, r in enumerate(regs, 1):
-            line = "{}{}: 0x{{:08x}}  {}\t".format(COLORS[(idx-1) // self.regs_a_row], r, color.END)
+            line = "{}{:10s}: 0x{{:016x}}  {}\t".format(COLORS[((idx-1) // self.regs_a_row) % len(COLORS)], r, color.END)
 
             if diff_reg and r in diff_reg:
                 line = f"{color.UNDERLINE}{color.BOLD}{line}"
